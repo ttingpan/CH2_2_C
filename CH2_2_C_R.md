@@ -42,6 +42,13 @@ class BookManager {
 private:
     vector<Book> books; // 책 목록 저장
 
+    Book* findBookByTitle(string title)
+    {
+
+    }
+
+
+
 public:
     // 책 추가 메서드
     void addBook(const string& title, const string& author) {
@@ -75,7 +82,7 @@ public:
     }
 
     // 검색 로직
-    // search = 검색 내용 / isTitle = 제목 검색 인지 확인 (0 = 책 제목 / 1 = 저자명) 
+    // search = 검색 내용 / isTitle = 제목 검색 인지 확인 (false = 저자명 검색) 
     void searchBook(string search, bool isTitle = true)
     {
         string typeText = isTitle ? "책 제목" : "저자명";
@@ -86,7 +93,7 @@ public:
 
             if (target == search)
             {
-                cout << endl << "====입력한 " << typeText << "과 일치하는 책을 찾았습니다.====" << endl;
+                cout << endl << "====입력한 "<< typeText << "과 일치하는 책을 찾았습니다.====" << endl;
                 cout << books[i].title << " by " << books[i].author << endl;
                 return;
             }
