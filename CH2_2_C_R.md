@@ -65,29 +65,28 @@ public:
     // 책 제목으로 검색
     void searchByTitle(string title)
     {
-        cout << endl << "입력한 책 제목: " << title << endl;
-        for (int i = 0; i < books.size(); i++)
-        {
-            if (books[i].title == title)
-            {
-                cout << endl << "====입력한 책 제목과 일치하는 책을 찾았습니다.====" << endl;
-                cout << books[i].title << " by " << books[i].author << endl;
-                return;
-            }
-        }
-
-        cout << "====검색 결과가 없습니다.====" << endl;
+        searchBook(title);
     }
 
     // 책 저자명으로 검색
     void searchByAuthor(string author)
     {
-        cout << endl << "입력한 저자명: " << author << endl;
+        searchBook(author, false);
+    }
+
+    // 검색 로직
+    // search = 검색 내용 / isTitle = 제목 검색 인지 확인 (0 = 책 제목 / 1 = 저자명) 
+    void searchBook(string search, bool isTitle = true)
+    {
+        string typeText = isTitle ? "책 제목" : "저자명";
+
         for (int i = 0; i < books.size(); i++)
         {
-            if (books[i].author == author)
+            string target = isTitle ? books[i].title : books[i].author;
+
+            if (target == search)
             {
-                cout << endl << "====입력한 저자명과 일치하는 책을 찾았습니다.====" << endl;
+                cout << endl << "====입력한 " << typeText << "과 일치하는 책을 찾았습니다.====" << endl;
                 cout << books[i].title << " by " << books[i].author << endl;
                 return;
             }
